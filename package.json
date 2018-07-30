@@ -1,0 +1,26 @@
+{
+  "name": "cordova-framework7-plantilla",
+  "version": "1.0.0",
+  "description": "Plantilla para el inicio de desarrollo de una app/cordova",
+  "main": "index.js",
+  "scripts": {
+    "postinstall": "cordova platform add browser"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/eliecer2000/cordova-framework7-plantilla.git"
+  },
+  "homepage": "https://github.com/eliecer2000/cordova-framework7-plantilla",
+  "keywords": [
+    "framework7",
+    "template",
+    "ios",
+    "android",
+    "mobile",
+    "app",
+    "cordova",
+    "phonegap"
+  ],
+  "author": "Eliecer Rangel",
+  "license": "Apache-2.0"
+}
