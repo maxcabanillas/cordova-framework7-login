@@ -1,0 +1,131 @@
+<template>
+  <div class="page">
+    <div class="navbar">
+      <div class="navbar-inner sliding">
+        <div class="left">
+          <a href="#" class="link back">
+            <i class="icon icon-back"></i>
+            <span class="ios-only">Back</span>
+          </a>
+        </div>
+        <div class="title">Component Page</div>
+      </div>
+    </div>
+    <div class="page-content">
+      <div class="block block-strong">
+        <p>Component page is alos compiled with Template7, but it has much more functionality. In addition to Template7 page it has lifecycle hooks, events handling and data managment.</p>
+        <p>It is useful to use Component page when you need page-specific logic.</p>
+      </div>
+      <div class="block-title">Events Handling</div>
+      <div class="block block-strong">
+        <a href="#" class="button button-raised" @click="openAlert">Abrir funcion en la misma pagina</a>
+      </div>
+      <div class="block-title">Page Component Data</div>
+      <div class="block block-strong">
+        <p>Hello! My name is {{name}}. I am {{age}} years old.</p>
+        <p>I like to play:</p>
+        <ul>
+          {{#each like}}
+          <li>{{this}}</li>
+          {{/each}}
+        </ul>
+      </div>
+      <div class="block-title">Extended Context</div>
+      <div class="block block-strong">
+        <p>Component page context as Template7 page context is also extended with some additional variables.</p>
+        <h4>$route</h4>
+        <p>Contains properties of the current route:</p>
+        <ul style="padding-left:25px">
+          <li><b>$route.url</b>: {{$route.url}}</li>
+          <li><b>$route.path</b>: {{$route.path}}</li>
+          <li><b>$route.params</b>: {{js 'return JSON.stringify(this.$route.params)'}}</li>
+          <li><b>$route.hash</b>: {{$route.hash}}</li>
+          <li><b>$route.query</b>: {{js 'return JSON.stringify(this.$route.query)'}}</li>
+        </ul>
+
+        <h4>$root</h4>
+        <p>Root data & methods:</p>
+        <ul style="padding-left:25px">
+          <li><b>$root.user.firstName</b>: {{$root.user.firstName}}</li>
+          <li><b>$root.user.lastName</b>: {{$root.user.lastName}}</li>
+          <li><a @click="$root.helloWorld()">$root.helloWorld() funcion del root</a></li>
+        </ul>
+
+        <h4>$theme</h4>
+        <p>Currently active theme:</p>
+        <ul style="padding-left:25px">
+          <li><b>$theme.ios</b>: {{$theme.ios}}</li>
+          <li><b>$theme.md</b>: {{$theme.md}}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</template>
+<style>
+  p {
+    margin: 10px 0;
+  }
+</style>
+<script>
+  return {
+    // Lifecycle Hooks // Ciclos de vida del componente cuando se inicia / montaje / destruye - antes y despues
+    beforeCreate() {
+      console.log('Antes de Crear el componente: componentBeforeCreate', this)
+    },
+    created() {
+      console.log('En el momento que se crea el componente: componentCreated', this)
+    },
+    beforeMount() {
+      console.log('Antes de montar el componente: componentBeforeMount', this)
+    },
+    mounted() {
+      console.log('Despues de montado el componente: componentMounted', this);
+    },
+    beforeDestroy() {
+      console.log('Antes de destruir el componente: componentBeforeDestroy', this);
+    },
+    destroyed() {
+      console.log('Cuando el componente ya no existe: componentDestroyed', this);
+    },
+    // Component Data  // data que se solicite solo para este componente
+    data: function () {
+      // Must return an object
+      return {
+        name: 'Jimmy',
+        age: 25,
+        like: ['Tennis', 'Chess', 'Football'],
+      }
+    },
+    // Component Methods // aqui las funciones locales que solo se usaran en este componente
+    methods: {
+      openAlert: function () {
+        var self = this;
+        self.$app.dialog.alert('funcion dentro de la pagina');
+      },
+    },
+    // Page Events // Eventos de la pagina donde podemos controlar entrada / salida / antes y despues - incluso cuando se remueve
+    on: {
+      pageMounted: function(e, page) {
+        console.log('Cuando se monta la pagina: pageMounted', page);
+      },
+      pageInit: function(e, page) {
+        console.log('Cuando se inicia la data de la pagina: pageInit', page);
+      },
+      pageBeforeIn: function(e, page) {
+        console.log('Antes de Mostrar la pagina: pageBeforeIn ', page);
+      },
+      pageAfterIn: function(e, page) {
+        console.log('Despues de mostrada la pagina: pageAfterIn', page);
+      },
+      pageBeforeOut: function(e, page) {
+        console.log('Antes de Salir la Pagina: pageBeforeOut', page);
+      },
+      pageAfterOut: function(e, page) {
+        console.log('Despues de haber salido de la pagina: pageAfterOut', page);
+      },
+      pageBeforeRemove: function(e, page) {
+        console.log('Antes de Eliminar la pagina: pageBeforeRemove', page);
+      },
+    }
+  }
+</script>

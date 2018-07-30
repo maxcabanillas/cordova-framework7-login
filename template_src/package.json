@@ -1,0 +1,27 @@
+{
+    "name": "com.platilla.limpia",
+    "version": "1.0.0",
+    "description": "Plantilla en blanco para el inicio de un proyecto cordova / framework7",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [
+        "ecosystem:cordova"
+    ],
+    "license": "ISC",
+    "displayName": "plantilla_limpia",
+    "dependencies": {
+        "cordova-android": "^6.3.0",
+        "cordova-browser": "^5.0.3",
+        "cordova-plugin-whitelist": "^1.3.3"
+    },
+    "cordova": {
+        "plugins": {
+            "cordova-plugin-whitelist": {}
+        },
+        "platforms": [
+            "browser",
+            "android"
+        ]
+    }
+}
